@@ -1,6 +1,6 @@
 class ProductsController < InheritedResources::Base
 
-  before_filter :restrict_access
+  # before_filter :restrict_access
 
   def index
   	@products = Product.all
@@ -10,7 +10,7 @@ class ProductsController < InheritedResources::Base
   private
 
     def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
+      authenticate_or_request_with_http_token do |token, options|
       ApiKey.exists?(access_token: token)
     end
 
