@@ -11,18 +11,6 @@ class Api::V1::CategoriesController < ApplicationController
     respond_with Category.find(params[:id])
   end
 
-  def create
-    respond_with Category.create(params[:category])
-  end
-
-  def update
-    respond_with Category.update(params[:id], params[:category])
-  end
-
-  def destroy
-    respond_with Category.destroy(params[:id])
-  end  
-
 
   private
 
