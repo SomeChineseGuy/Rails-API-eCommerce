@@ -1,0 +1,16 @@
+<div class="col-sm-8">
+  <dl class="dl-horizontal">
+  <ul>
+  <% @products.each do | p | %>
+
+    <li> <%= p["name"] %> </li>
+    <dt> Quantity </dt>
+    <dd><%= p["quantity"] %></dd>
+    <dt> Price </dt>
+    <dd><%= p["price"] %></dd>
+    <dt> Category </dt>
+    <dd><%= p["category_id"] %></dd>
+
+    <% end %>
+  </dl>
+</div>

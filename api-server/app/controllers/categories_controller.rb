@@ -1,6 +1,6 @@
 class CategoriesController < InheritedResources::Base
 
-  # before_filter :restrict_access
+  before_filter :restrict_access
 
   def index
   	@categories = Category.all

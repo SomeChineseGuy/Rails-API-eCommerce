@@ -1,5 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
-  # before_filter :restrict_access
+
+  before_filter :restrict_access
   respond_to :json
     def index
       @products = Product.all
@@ -12,12 +13,12 @@ class Api::V1::ProductsController < ApplicationController
    private
 
     def restrict_access
-      authenticate_or_request_with_http_token do |token, options|
-      ApiKey.exists?(access_token: token)
+      api_key = ApiKey.find_by_access_token(params[:access_token])
+      head :unauthorized unless api_key
+
     end
 
     def product_params
       params.require(:product).permit(:name, :price, :quantity, :category_id)
     end
-  end
 end  

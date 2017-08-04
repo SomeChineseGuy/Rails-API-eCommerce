@@ -1,6 +1,6 @@
 class ProductsController < InheritedResources::Base
 
-  # before_filter :restrict_access
+  before_filter :restrict_access
 
   def index
   	@products = Product.all

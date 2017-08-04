@@ -1,6 +1,6 @@
 class Api::V1::CategoriesController < ApplicationController
 
-  # before_filter :restrict_access
+  before_filter :restrict_access
 
   def index
   	@categories = Category.all
@@ -15,8 +15,8 @@ class Api::V1::CategoriesController < ApplicationController
   private
 
     def restrict_access
-      authenticate_or_request_with_http_token do |token, options|
-      ApiKey.exists?(access_token: token)
+      api_key = ApiKey.find_by_access_token(params[:access_token])
+      head :unauthorized unless api_key
     end
 
     def category_params
